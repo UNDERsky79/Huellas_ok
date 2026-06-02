@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huella - Calzado Femenino | Temporada 2026/2027</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+        
+        /* Encabezado y Logo */
+        header {
+            background-color: #fff;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo img {
+            height: 60px;
+        }
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        nav a {
+            text-decoration: none;
+            color: #1a1a1a;
+            margin-left: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* Botón del Carrito en Header */
+        .cart-icon-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            font-size: 18px;
+            font-weight: bold;
+            margin-left: 25px;
+            display: flex;
+            align-items: center;
+        }
+        .cart-count {
+            background-color: #e67e22;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 7px;
+            font-size: 12px;
+            position: absolute;
+            top: -10px;
+            right: -15px;
+        }
+
+        /* Portada / Hero Section */
+        .hero {
+            width: 100%;
+            height: 28vh;
+            
+            background-image: url('portada.png');
+            background-size: cover;
+            background-position: center;
+        }
+   
+        
+        /* Secciones Generales */
+        .section-container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 35px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* Sección de Productos */
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .producto-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .producto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        
+        .producto-img-container {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            position: relative;
+            cursor: zoom-in;
+        }
+        .producto-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.2s ease;
+        }
+        .icono-lupa {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* NUEVO: Contenedor de Miniaturas Interactiva */
+        .producto-thumbs {
+            display: flex;
+            gap: 8px;
+            padding: 10px 20px 0 20px;
+            background: #fff;
+        }
+        .thumb-btn {
+            width: 45px;
+            height: 45px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            object-fit: cover;
+            transition: all 0.2s ease;
+            opacity: 0.7;
+        }
+        .thumb-btn:hover, .thumb-btn.active {
+            opacity: 1;
+            border-color: #1a1a1a;
+            transform: scale(1.05);
+        }
+
+        /* VISOR DE IMÁGENES (LIGHTBOX) */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox.mostrar {
+            display: flex;
+            opacity: 1;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 5px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            object-fit: contain;
+            cursor: zoom-out;
+        }
+        .cerrar-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 45px;
+            font-weight: normal;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .producto-info {
+            padding: 15px 20px 20px 20px;
+            text-align: left;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .producto-info h3 {
+            margin: 0 0 8px 0;
+            font-size: 18px;
+            color: #1a1a1a;
+        }
+        .producto-info p {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            height: 40px;
+            overflow: hidden;
+        }
+        .precio {
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 15px;
+        }
+        /* Selector de talles */
+        .selector-talle {
+            margin-bottom: 14px;
+        }
+        .selector-talle label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 7px;
+            color: #555;
+        }
+        .talles-opciones {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .talle-btn {
+            width: 38px;
+            height: 38px;
+            border: 1.5px solid #ccc;
+            background: #fff;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .talle-btn:hover {
+            border-color: #1a1a1a;
+            background: #f5f5f5;
+        }
+        .talle-btn.seleccionado {
+            background-color: #1a1a1a;
+            color: #fff;
+            border-color: #1a1a1a;
+        }
+        .talle-requerido {
+            font-size: 11px;
+            color: #e74c3c;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .btn-comprar {
+            display: block;
+            width: 100%;
+            padding: 10px 0;
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            font-size: 12px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-comprar:hover {
+            background-color: #444;
+        }
+
+        /* Información de Compra */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        .info-box {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        }
+        .info-box h3 {
+            margin-top: 0;
+            border-bottom: 2px solid #1a1a1a;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .tabla-talles {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .tabla-talles th, .tabla-talles td {
+            border: 1px solid #ddd;
+            padding: 6px;
+        }
+        .tabla-talles th {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        .faq-item {
+            margin-bottom: 12px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+        }
+        .faq-pregunta {
+            padding: 12px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 0;
+            font-size: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .faq-respuesta {
+            padding: 0 20px 12px 20px;
+            color: #666;
+            font-size: 14px;
+            display: none;
+        }
+
+        /* Carrito lateral flotante fijo */
+        .sidebar-cart {
+            position: fixed;
+            top: 15px;
+            right: -360px;
+            width: 310px;
+            max-height: 80vh;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .sidebar-cart.open {
+            right: 15px;
+        }
+        
+        /* Ajuste para pantallas móviles */
+        @media (max-width: 480px) {
+            .sidebar-cart {
+                width: calc(100% - 40px);
+                top: 10px;
+                max-height: 85vh;
+            }
+            .sidebar-cart.open {
+                right: 20px;
+            }
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            margin-top: 10px;
+            max-height: 250px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f9f9f9;
+        }
+        .btn-remove {
+            background: none;
+            border: none;
+            color: #e74c3c;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        
+        .cart-footer {
+            border-top: 2px solid #f0f0f0;
+            padding-top: 12px;
+            margin-top: 10px;
+        }
+        .cart-total {
+            font-size: 18px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+        .btn-checkout {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        /* WhatsApp Flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: #fff;
+            border-radius: 50%;
+            width: 55px;
+            height: 55px;
+            text-align: center;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        .whatsapp-float svg {
+            width: 28px;
+            height: 28px;
+            fill: #fff;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 25px 20px;
+            margin-top: 35px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Logo Huella">
+        </div>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#coleccion">Colección</a>
+            <a href="#info">Info Útil</a>
+            <button class="cart-icon-btn" onclick="toggleCart()">
+                🛒 Carrito
+                <span class="cart-count" id="cart-count">0</span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero"></section>
+
+        <section id="coleccion" class="section-container">
+            <h2 class="section-title">Colección 2026/2027</h2>
+            <div class="grid-productos">
+                
+                <div class="producto-card" id="prod-boho">
+                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-boho')">
+                        <img id="img-viewer-boho" src="boho1.jpg" alt="Sandalia Boho Chic">
+                        <div class="icono-lupa">🔍</div>
+                    </div>
+                    <div class="producto-thumbs">
+                        <img class="thumb-btn active" src="boho4.jpeg" alt="Vista lateral" onclick="seleccionarImagen('img-viewer-boho', this)">
+                        <img class="thumb-btn" src="boho2.jpeg" alt="Vista superior" onclick="seleccionarImagen('img-viewer-boho', this)">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Sandalia Boho Anatómica</h3>
+                        <p>Apliques de pedrería turquesa y base ergonómica de corcho.</p>
+                        <div>
+                            <div class="selector-talle">
+                                <label>Talle</label>
+                                <div class="talles-opciones" id="talles-boho">
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-boho', this)">35</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-boho', this)">36</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-boho', this)">37</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-boho', this)">38</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-boho', this)">39</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-boho', this)">40</button>
+                                </div>
+                                <p class="talle-requerido" id="error-boho">⚠ Seleccioná un talle antes de agregar</p>
+                            </div>
+                            <div class="precio">$45.000</div>
+                            <button class="btn-comprar" onclick="addToCart('Sandalia Boho Anatómica', 45000, 'talles-boho', 'error-boho')">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="producto-card" id="prod-noir">
+                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-noir')">
+                        <img id="img-viewer-noir" src="noir1.jpg" alt="Sandalia Negra Brillante">
+                        <div class="icono-lupa">🔍</div>
+                    </div>
+                    <div class="producto-thumbs">
+                        <img class="thumb-btn active" src="noir3.jpeg" alt="Vista lateral" onclick="seleccionarImagen('img-viewer-noir', this)">
+                        <img class="thumb-btn" src="noir2.jpeg" alt="Vista superior" onclick="seleccionarImagen('img-viewer-noir', this)">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Sandalia Noir Elegance</h3>
+                        <p>Doble hebilla ajustable con detalles de strass y perlas negras.</p>
+                        <div>
+                            <div class="selector-talle">
+                                <label>Talle</label>
+                                <div class="talles-opciones" id="talles-noir">
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-noir', this)">35</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-noir', this)">36</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-noir', this)">37</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-noir', this)">38</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-noir', this)">39</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-noir', this)">40</button>
+                                </div>
+                                <p class="talle-requerido" id="error-noir">⚠ Seleccioná un talle antes de agregar</p>
+                            </div>
+                            <div class="precio">$45.000</div>
+                            <button class="btn-comprar" onclick="addToCart('Sandalia Noir Elegance', 45000, 'talles-noir', 'error-noir')">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="producto-card" id="prod-gold">
+                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-gold')">
+                        <img id="img-viewer-gold" src="gold1.jpg" alt="Sandalia Plataforma Dorada">
+                        <div class="icono-lupa">🔍</div>
+                    </div>
+                    <div class="producto-thumbs">
+                        <img class="thumb-btn active" src="gold2.jpeg" alt="Vista superior" onclick="seleccionarImagen('img-viewer-gold', this)">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Plataforma Gold Leaf</h3>
+                        <p>Capellada en tonos dorados con detalles troquelados.</p>
+                        <div>
+                            <div class="selector-talle">
+                                <label>Talle</label>
+                                <div class="talles-opciones" id="talles-gold">
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-gold', this)">35</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-gold', this)">36</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-gold', this)">37</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-gold', this)">38</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-gold', this)">39</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-gold', this)">40</button>
+                                </div>
+                                <p class="talle-requerido" id="error-gold">⚠ Seleccioná un talle antes de agregar</p>
+                            </div>
+                            <div class="precio">$35.000</div>
+                            <button class="btn-comprar" onclick="addToCart('Plataforma Gold Leaf', 35000, 'talles-gold', 'error-gold')">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="info" class="section-container">
+            <h2 class="section-title">Experiencia de Compra</h2>
+            
+            <div class="info-grid">
+                <div class="info-box">
+                    <h3>📏 Guía de Talles</h3>
+                    <p>Medí tu pie desde el talón hasta la punta del dedo más largo. Si estás entre dos talles, te recomendamos llevar el más grande.</p>
+                    <table class="tabla-talles">
+                        <tr><th>Talle</th><th>Centímetros</th></tr>
+                        <tr><td>35</td><td>22.5 cm - 23.0 cm</td></tr>
+                        <tr><td>36</td><td>23.1 cm - 23.5 cm</td></tr>
+                        <tr><td>37</td><td>23.6 cm - 24.5 cm</td></tr>
+                        <tr><td>38</td><td>24.6 cm - 25.0 cm</td></tr>
+                        <tr><td>39</td><td>25.1 cm - 25.5 cm</td></tr>
+                        <tr><td>40</td><td>25.6 cm - 26.0 cm</td></tr>
+                    </table>
+                </div>
+
+                <div class="info-box">
+                    <h3>🚚 Envíos y Medios de Pago</h3>
+                    <p><strong>Envíos:</strong><br>
+                    • Motomensajería rápida en Zona Oeste (San Justo, Isidro Casanova, Villa Luzuriaga, Moreno y alrededores).<br>
+                    • Despachamos por correo a todo el país.</p>
+                    <p><strong>Medios de Pago:</strong><br>
+                    Aceptamos Mercado Pago, transferencias bancarias y efectivo a contraentrega (solo envíos por moto).</p>
+                </div>
+
+                <div class="info-box">
+                    <h3>🔄 Políticas de Cambio</h3>
+                    <p>Queremos que ames tus sandalias. Si el talle no te convence, tenés <strong>15 días de corrido</strong> desde que recibís tu pedido para solicitar el cambio.</p>
+                    <p><em>Condición:</em> El calzado debe estar sin uso, en su caja original y en perfectas condiciones. Los costos de envío por cambio quedan a cargo del comprador.</p>
+                </div>
+            </div>
+
+            <div class="info-box" style="max-width: 800px; margin: 0 auto;">
+                <h3>❓ Preguntas Frecuentes (FAQ)</h3>
+                
+                <div class="faq-item">
+                    <p class="faq-pregunta" onclick="toggleFaq(this)">¿Tienen local a la calle? <span>+</span></p>
+                    <p class="faq-respuesta">Por el momento somos una tienda 100% online. Esto nos permite ofrecerte mejores precios y enviarte el pedido directamente a la puerta de tu casa.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <p class="faq-pregunta" onclick="toggleFaq(this)">¿Venden por mayor? <span>+</span></p>
+                    <p class="faq-respuesta">Sí, armamos presupuestos especiales para ventas por mayor. Comunicate a nuestro WhatsApp indicando la cantidad que precisás y te asesoramos.</p>
+                </div>
+
+                <div class="faq-item">
+                    <p class="faq-pregunta" onclick="toggleFaq(this)">¿De qué material son las bases? <span>+</span></p>
+                    <p class="faq-respuesta">Trabajamos con bases ergonómicas inyectadas, expanso y detalles en corcho natural, dependiendo del modelo, garantizando durabilidad y confort para el uso diario.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="sidebar-cart" id="sidebar-cart">
+        <div class="cart-header">
+            <h3 style="margin:0;">Tu Pedido</h3>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-val">$0</span>
+            </div>
+            <button class="btn-checkout" onclick="checkoutPedido()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox" onclick="cerrarImagen()">
+        <span class="cerrar-lightbox">&times;</span>
+        <img id="lightbox-img" src="" alt="Imagen ampliada" onclick="event.stopPropagation()">
+    </div>
+
+    <a href="https://wa.me/5491155774243" class="whatsapp-float" target="_blank">
+        <svg viewBox="0 0 32 32">
+            <path d="M16 2a13 13 0 0 0-11.3 19.4L3 29l7.8-2A13 13 0 1 0 16 2zm6.6 18.3c-.3.5-1.5 1-2 1-.5 0-1-.2-3.3-1.1a12 12 0 0 1-4.8-4.2c-.8-1-1.3-2.3-1.3-3.6 0-1.4.7-2 1-2.4.2-.2.5-.3.8-.3h.5c.2 0 .5 0 .7.5.3.6 1 2.3 1 2.5 0 .2 0 .4-.2.6s-.3.3-.5.5c-.2.2-.4.4-.2.7.4.7.9 1.3 1.6 1.9.8.7 1.6 1.1 2.4 1.5.3.1.6.1.8-.1.2-.3.8-1 1-1.3.2-.3.5-.2.8-.1h2.2c.4 0 .7.2.9.3.2.1 1.2 1.8 1.2 2.1 0 .4-.1.9-.4 1.3z"/>
+        </svg>
+    </a>
+
+    <footer>
+        <p>&copy; 2026 Huella - Calzado Femenino. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const whatsappNumber = "5491155774243";
+
+        // --- CARRITO con persistencia en localStorage ---
+        let cart = JSON.parse(localStorage.getItem('huella_cart') || '[]');
+
+        function guardarCarrito() {
+            localStorage.setItem('huella_cart', JSON.stringify(cart));
+        }
+
+        function toggleCart() {
+            document.getElementById('sidebar-cart').classList.toggle('open');
+        }
+
+        function seleccionarTalle(contenedorId, btn) {
+            const contenedor = document.getElementById(contenedorId);
+            contenedor.querySelectorAll('.talle-btn').forEach(b => b.classList.remove('seleccionado'));
+            btn.classList.add('seleccionado');
+        }
+
+        function addToCart(name, price, tallesId, errorId) {
+            // Validar que haya talle seleccionado
+            const talleSeleccionado = document.getElementById(tallesId)?.querySelector('.talle-btn.seleccionado');
+            const errorEl = document.getElementById(errorId);
+
+            if (!talleSeleccionado) {
+                if (errorEl) errorEl.style.display = 'block';
+                return;
+            }
+            if (errorEl) errorEl.style.display = 'none';
+
+            const talle = talleSeleccionado.textContent.trim();
+            const key = `${name} (Talle ${talle})`;
+
+            const existingItem = cart.find(item => item.name === key);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name: key, price, quantity: 1 });
+            }
+
+            guardarCarrito();
+            updateCartUI();
+            document.getElementById('sidebar-cart').classList.add('open');
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            guardarCarrito();
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotalVal = document.getElementById('cart-total-val');
+            
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+            let totalItems = 0;
+
+            cart.forEach(item => {
+                total += item.price * item.quantity;
+                totalItems += item.quantity;
+
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <div>
+                        <h4 style="margin:0 0 5px 0; font-size:15px;">${item.name}</h4>
+                        <p style="margin:0; color:#666; font-size:13px;">${item.quantity} x $${item.price.toLocaleString('es-AR')}</p>
+                    </div>
+                    <button class="btn-remove" onclick="removeFromCart('${item.name.replace(/'/g, "\\'")}')">Quitar</button>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+
+            cartCount.innerText = totalItems;
+            cartTotalVal.innerText = `$${total.toLocaleString('es-AR')}`;
+        }
+
+        function checkoutPedido() {
+            if (cart.length === 0) {
+                alert("Tu carrito está vacío.");
+                return;
+            }
+
+            let total = 0;
+            const lineas = cart.map(item => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+                return `• ${item.quantity}x ${item.name} — $${subtotal.toLocaleString('es-AR')}`;
+            });
+
+            const mensaje =
+                `¡Hola Huella! 👋 Me gustaría realizar el siguiente pedido:\n\n` +
+                lineas.join('\n') +
+                `\n\n*Total: $${total.toLocaleString('es-AR')}*\n\n` +
+                `¿Pueden confirmarme disponibilidad y forma de envío? ¡Gracias!`;
+
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensaje)}`, '_blank');
+        }
+
+        function toggleFaq(element) {
+            const respuesta = element.nextElementSibling;
+            const span = element.querySelector('span');
+            if (respuesta.style.display === "block") {
+                respuesta.style.display = "none";
+                span.innerText = "+";
+            } else {
+                respuesta.style.display = "block";
+                span.innerText = "-";
+            }
+        }
+
+        /* Funciones para interacción de imágenes */
+        function seleccionarImagen(viewerId, thumbElement) {
+            const visorPrincipal = document.getElementById(viewerId);
+            visorPrincipal.style.opacity = '0.3';
+            setTimeout(() => {
+                visorPrincipal.src = thumbElement.src;
+                visorPrincipal.alt = thumbElement.alt;
+                visorPrincipal.style.opacity = '1';
+            }, 100);
+            const contenedorThumbs = thumbElement.parentElement;
+            contenedorThumbs.querySelectorAll('.thumb-btn').forEach(btn => btn.classList.remove('active'));
+            thumbElement.classList.add('active');
+        }
+
+        function abrirImagenConID(viewerId) {
+            const srcActual = document.getElementById(viewerId).src;
+            abrirImagen(srcActual);
+        }
+
+        function abrirImagen(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.classList.add('mostrar');
+        }
+
+        function cerrarImagen() {
+            document.getElementById('lightbox').classList.remove('mostrar');
+        }
+
+        // Inicializar carrito al cargar
+        updateCartUI();
+    </script>
+</body>
+</html>
