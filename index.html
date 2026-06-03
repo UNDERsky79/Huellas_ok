@@ -73,12 +73,10 @@
         .hero {
             width: 100%;
             height: 28vh;
-            
             background-image: url('portada.png');
             background-size: cover;
             background-position: center;
         }
-   
         
         /* Secciones Generales */
         .section-container {
@@ -145,7 +143,7 @@
             z-index: 2;
         }
 
-        /* NUEVO: Contenedor de Miniaturas Interactiva */
+        /* Contenedor de Miniaturas Interactiva */
         .producto-thumbs {
             display: flex;
             gap: 8px;
@@ -168,7 +166,7 @@
             transform: scale(1.05);
         }
 
-        /* VISOR DE IMÁGENES (LIGHTBOX) */
+        /* VISOR DE IMÁGENES INTERACTIVO MEJORADO (LIGHTBOX) */
         .lightbox {
             display: none;
             position: fixed;
@@ -177,23 +175,42 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.85);
+            background-color: rgba(0, 0, 0, 0.9);
             align-items: center;
             justify-content: center;
             opacity: 0;
             transition: opacity 0.3s ease;
+            overflow: hidden;
+            touch-action: none; /* Desactiva el scroll nativo atrás */
         }
         .lightbox.mostrar {
             display: flex;
             opacity: 1;
         }
+        
+        /* Contenedor interno que permite mover y escalar la imagen */
+        .lightbox-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: grab;
+        }
+        .lightbox-wrapper:active {
+            cursor: grabbing;
+        }
+        
         .lightbox img {
-            max-width: 90%;
+            max-width: 95%;
             max-height: 85vh;
-            border-radius: 5px;
+            border-radius: 4px;
             box-shadow: 0 5px 25px rgba(0,0,0,0.5);
             object-fit: contain;
-            cursor: zoom-out;
+            transition: transform 0.1s ease-out; /* Suaviza el paneo y zoom */
+            user-select: none;
+            -webkit-user-drag: none;
         }
         .cerrar-lightbox {
             position: absolute;
@@ -205,6 +222,7 @@
             cursor: pointer;
             background: none;
             border: none;
+            z-index: 10001;
         }
 
         .producto-info {
@@ -360,6 +378,55 @@
             display: none;
         }
 
+        /* Estilos de la Nueva Sección Mayorista */
+        .seccion-mayorista {
+            background-color: #fff;
+            padding: 50px 20px;
+            margin-top: 50px;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+        .grid-mayorista {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1100px;
+            margin: 35px auto;
+        }
+        .card-mayorista {
+            background: #f9f9f9;
+            padding: 30px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            border: 1px solid #f0f0f0;
+        }
+        .card-mayorista h3 {
+            color: #1a1a1a;
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .btn-mayorista-wa {
+            display: inline-block;
+            background-color: #25d366;
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.2);
+            transition: transform 0.2s ease, background-color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-mayorista-wa:hover {
+            background-color: #20ba56;
+            transform: scale(1.02);
+        }
+
         /* Carrito lateral flotante fijo */
         .sidebar-cart {
             position: fixed;
@@ -389,6 +456,13 @@
             }
             .sidebar-cart.open {
                 right: 20px;
+            }
+            header {
+                padding: 15px 20px;
+            }
+            nav a {
+                margin-left: 10px;
+                font-size: 12px;
             }
         }
 
@@ -499,6 +573,7 @@
         <nav>
             <a href="#">Inicio</a>
             <a href="#coleccion">Colección</a>
+            <a href="#mayorista">Mayorista</a>
             <a href="#info">Info Útil</a>
             <button class="cart-icon-btn" onclick="toggleCart()">
                 🛒 Carrito
@@ -609,6 +684,37 @@
             </div>
         </section>
 
+        <section id="mayorista" class="seccion-mayorista">
+            <h2 class="section-title">Venta Mayorista - Emprendé con Huella</h2>
+            <p style="color: #666; max-width: 700px; margin: 0 auto; padding: 0 20px;">
+                ¿Querés revender calzado de excelente calidad, armar tu propio showroom o sumar stock a tu local? Te ofrecemos las mejores condiciones y soporte continuo para impulsar tu negocio.
+            </p>
+            
+            <div class="grid-mayorista">
+                <div class="card-mayorista">
+                    <h3>📦 Compra Mínima</h3>
+                    <p style="color:#555; font-size:14px; margin:0;">Iniciá tu pedido a partir de <strong>6 pares surtidos</strong>. Podés combinar los modelos, colores y talles que más te gusten sin obligación de llevar curva cerrada.</p>
+                </div>
+                <div class="card-mayorista">
+                    <h3>💸 Medios de Pago</h3>
+                    <p style="color:#555; font-size:14px; margin:0;">Aceptamos Mercado Pago y plataformas digitales. Ofrecemos un <strong>descuento especial</strong> si abonás mediante transferencia bancaria o efectivo.</p>
+                </div>
+                <div class="card-mayorista">
+                    <h3>🚛 Envíos a todo el País</h3>
+                    <p style="color:#555; font-size:14px; margin:0;">Coordinamos el despacho a través del transporte de carga, expreso o correo de tu total confianza. El costo de envío queda a cargo del comprador.</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 35px;">
+                <p style="font-size: 16px; font-weight: bold; margin-bottom: 20px;">¿Querés recibir nuestro catálogo exclusivo con precios mayoristas?</p>
+                <a href="https://wa.me/5491155774243?text=¡Hola%20Huella!%20👋%20Me%20interesa%20recibir%20el%20catálogo%20y%20las%20condiciones%20para%20venta%20mayorista." 
+                   target="_blank" 
+                   class="btn-mayorista-wa">
+                   💬 Solicitar Catálogo Mayorista
+                </a>
+            </div>
+        </section>
+
         <section id="info" class="section-container">
             <h2 class="section-title">Experiencia de Compra</h2>
             
@@ -658,7 +764,7 @@
 
                 <div class="faq-item">
                     <p class="faq-pregunta" onclick="toggleFaq(this)">¿De qué material son las bases? <span>+</span></p>
-                    <p class="faq-respuesta">Trabajamos con bases ergonómicas inyectadas, expanso y detalles en corcho natural, dependiendo del modelo, garantizando durabilidad y confort para el uso diario.</p>
+                    <p class="faq-respuesta">Trabajamos con bases ergonómicas inyectadas, expanso y detalles en corcho natural, dependiendo del modelo, garantizando durabilidad and confort para el uso diario.</p>
                 </div>
             </div>
         </section>
@@ -679,9 +785,11 @@
         </div>
     </div>
 
-    <div class="lightbox" id="lightbox" onclick="cerrarImagen()">
-        <span class="cerrar-lightbox">&times;</span>
-        <img id="lightbox-img" src="" alt="Imagen ampliada" onclick="event.stopPropagation()">
+    <div class="lightbox" id="lightbox">
+        <button class="cerrar-lightbox" onclick="cerrarImagen()">&times;</button>
+        <div class="lightbox-wrapper" id="lightbox-wrapper">
+            <img id="lightbox-img" src="" alt="Imagen ampliada">
+        </div>
     </div>
 
     <a href="https://wa.me/5491155774243" class="whatsapp-float" target="_blank">
@@ -715,7 +823,6 @@
         }
 
         function addToCart(name, price, tallesId, errorId) {
-            // Validar que haya talle seleccionado
             const talleSeleccionado = document.getElementById(tallesId)?.querySelector('.talle-btn.seleccionado');
             const errorEl = document.getElementById(errorId);
 
@@ -809,7 +916,6 @@
             }
         }
 
-        /* Funciones para interacción de imágenes */
         function seleccionarImagen(viewerId, thumbElement) {
             const visorPrincipal = document.getElementById(viewerId);
             visorPrincipal.style.opacity = '0.3';
@@ -828,16 +934,114 @@
             abrirImagen(srcActual);
         }
 
+        // --- NUEVA LÓGICA DE INTERACCIÓN AVANZADA PARA FOTOS (ZOOM Y ARRASTRE) ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxWrapper = document.getElementById('lightbox-wrapper');
+
+        let escala = 1;
+        let puntoInicio = { x: 0, y: 0 };
+        let deltaArrastrado = { x: 0, y: 0 };
+        let estaArrastrando = false;
+
         function abrirImagen(src) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
             lightboxImg.src = src;
+            escala = 1;
+            deltaArrastrado = { x: 0, y: 0 };
+            actualizarTransformacionImagen();
             lightbox.classList.add('mostrar');
         }
 
         function cerrarImagen() {
-            document.getElementById('lightbox').classList.remove('mostrar');
+            lightbox.classList.remove('mostrar');
         }
+
+        function actualizarTransformacionImagen() {
+            lightboxImg.style.transform = `translate(${deltaArrastrado.x}px, ${deltaArrastrado.y}px) scale(${escala})`;
+        }
+
+        // Control con Computadora (Rueda del Mouse y Clics)
+        lightboxWrapper.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            const factorZoom = 0.1;
+            if (e.deltaY < 0) {
+                escala = Math.min(escala + factorZoom, 4); // Max Zoom x4
+            } else {
+                escala = Math.max(escala - factorZoom, 1); // Min Zoom x1
+                if (escala === 1) deltaArrastrado = { x: 0, y: 0 };
+            }
+            actualizarTransformacionImagen();
+        });
+
+        lightboxWrapper.addEventListener('mousedown', (e) => {
+            if (e.target === lightboxImg || escala > 1) {
+                estaArrastrando = true;
+                puntoInicio = { x: e.clientX - deltaArrastrado.x, y: e.clientY - deltaArrastrado.y };
+            }
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!estaArrastrando) return;
+            e.preventDefault();
+            deltaArrastrado = { x: e.clientX - puntoInicio.x, y: e.clientY - puntoInicio.y };
+            actualizarTransformacionImagen();
+        });
+
+        window.addEventListener('mouseup', () => {
+            estaArrastrando = false;
+        });
+
+        // Doble Clic / Toque rápido para Zoom veloz
+        lightboxWrapper.addEventListener('dblclick', (e) => {
+            if (escala === 1) {
+                escala = 2.5;
+            } else {
+                escala = 1;
+                deltaArrastrado = { x: 0, y: 0 };
+            }
+            actualizarTransformacionImagen();
+        });
+
+        // CONTROL CON CELULAR (Pantalla Táctil)
+        lightboxWrapper.addEventListener('touchstart', (e) => {
+            if (e.touches.length === 1) {
+                estaArrastrando = true;
+                // Guardamos la posición inicial del dedo restando el movimiento acumulado
+                puntoInicio = { x: e.touches[0].clientX - deltaArrastrado.x, y: e.touches[0].clientY - deltaArrastrado.y };
+            }
+        });
+
+        lightboxWrapper.addEventListener('touchmove', (e) => {
+            if (!estaArrastrando || e.touches.length !== 1) return;
+            
+            const toqueActualX = e.touches[0].clientX;
+            const toqueActualY = e.touches[0].clientY;
+            
+            deltaArrastrado = { x: toqueActualX - puntoInicio.x, y: toqueActualY - puntoInicio.y };
+            actualizarTransformacionImagen();
+        });
+
+        lightboxWrapper.addEventListener('touchend', (e) => {
+            estaArrastrando = false;
+            
+            // Si la foto no tiene zoom activo, permitimos que un "swipe" vertical largo la cierre sola
+            if (escala === 1) {
+                if (Math.abs(deltaArrastrado.y) > 130) {
+                    cerrarImagen();
+                } else {
+                    // Si el movimiento fue chico, la devolvemos suavemente al centro
+                    deltaArrastrado = { x: 0, y: 0 };
+                    actualizarTransformacionImagen();
+                }
+            }
+        });
+
+        // Cerrar al tocar el fondo negro exterior
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target === lightboxWrapper) {
+                cerrarImagen();
+            }
+        });
 
         // Inicializar carrito al cargar
         updateCartUI();
