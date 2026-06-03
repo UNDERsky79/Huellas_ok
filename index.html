@@ -7,13 +7,15 @@
     <title>Huella - Calzado Femenino | Temporada 2026/2027</title>
     <style>
         /* Estilos generales */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
-            box-sizing: border-box;
             line-height: 1.6;
         }
         
@@ -73,6 +75,7 @@
         .hero {
             width: 100%;
             height: 28vh;
+            background-color: #e8e0d8;
             background-image: url('portada.png');
             background-size: cover;
             background-position: center;
@@ -458,11 +461,22 @@
                 right: 20px;
             }
             header {
-                padding: 15px 20px;
+                padding: 12px 20px;
             }
             nav a {
-                margin-left: 10px;
-                font-size: 12px;
+                display: none;
+            }
+            .cart-icon-btn {
+                margin-left: 0;
+            }
+        }
+        @media (min-width: 481px) and (max-width: 768px) {
+            header {
+                padding: 12px 25px;
+            }
+            nav a {
+                margin-left: 12px;
+                font-size: 11px;
             }
         }
 
@@ -591,12 +605,13 @@
                 
                 <div class="producto-card" id="prod-boho">
                     <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-boho')">
-                        <img id="img-viewer-boho" src="boho1.jpg" alt="Sandalia Boho Chic">
+                        <img id="img-viewer-boho" src="boho4.jpeg" alt="Sandalia Boho Chic">
                         <div class="icono-lupa">🔍</div>
                     </div>
                     <div class="producto-thumbs">
                         <img class="thumb-btn active" src="boho4.jpeg" alt="Vista lateral" onclick="seleccionarImagen('img-viewer-boho', this)">
                         <img class="thumb-btn" src="boho2.jpeg" alt="Vista superior" onclick="seleccionarImagen('img-viewer-boho', this)">
+                        <img class="thumb-btn" src="boho1.jpg" alt="Vista frontal" onclick="seleccionarImagen('img-viewer-boho', this)">
                     </div>
                     <div class="producto-info">
                         <h3>Sandalia Boho Anatómica</h3>
@@ -622,12 +637,13 @@
 
                 <div class="producto-card" id="prod-noir">
                     <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-noir')">
-                        <img id="img-viewer-noir" src="noir1.jpg" alt="Sandalia Negra Brillante">
+                        <img id="img-viewer-noir" src="noir3.jpeg" alt="Sandalia Negra Brillante">
                         <div class="icono-lupa">🔍</div>
                     </div>
                     <div class="producto-thumbs">
                         <img class="thumb-btn active" src="noir3.jpeg" alt="Vista lateral" onclick="seleccionarImagen('img-viewer-noir', this)">
                         <img class="thumb-btn" src="noir2.jpeg" alt="Vista superior" onclick="seleccionarImagen('img-viewer-noir', this)">
+                        <img class="thumb-btn" src="noir1.jpg" alt="Vista frontal" onclick="seleccionarImagen('img-viewer-noir', this)">
                     </div>
                     <div class="producto-info">
                         <h3>Sandalia Noir Elegance</h3>
@@ -653,11 +669,12 @@
 
                 <div class="producto-card" id="prod-gold">
                     <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-gold')">
-                        <img id="img-viewer-gold" src="gold1.jpg" alt="Sandalia Plataforma Dorada">
+                        <img id="img-viewer-gold" src="gold2.jpeg" alt="Sandalia Plataforma Dorada">
                         <div class="icono-lupa">🔍</div>
                     </div>
                     <div class="producto-thumbs">
                         <img class="thumb-btn active" src="gold2.jpeg" alt="Vista superior" onclick="seleccionarImagen('img-viewer-gold', this)">
+                        <img class="thumb-btn" src="gold1.jpg" alt="Vista frontal" onclick="seleccionarImagen('img-viewer-gold', this)">
                     </div>
                     <div class="producto-info">
                         <h3>Plataforma Gold Leaf</h3>
@@ -1003,15 +1020,40 @@
         });
 
         // CONTROL CON CELULAR (Pantalla Táctil)
+        let distanciaInicialPinch = null;
+        let escalaAntesDelPinch = 1;
+
+        function distanciaEntreToques(touches) {
+            const dx = touches[0].clientX - touches[1].clientX;
+            const dy = touches[0].clientY - touches[1].clientY;
+            return Math.sqrt(dx * dx + dy * dy);
+        }
+
         lightboxWrapper.addEventListener('touchstart', (e) => {
+            e.preventDefault();
             if (e.touches.length === 1) {
                 estaArrastrando = true;
+                distanciaInicialPinch = null;
                 // Guardamos la posición inicial del dedo restando el movimiento acumulado
                 puntoInicio = { x: e.touches[0].clientX - deltaArrastrado.x, y: e.touches[0].clientY - deltaArrastrado.y };
+            } else if (e.touches.length === 2) {
+                estaArrastrando = false;
+                distanciaInicialPinch = distanciaEntreToques(e.touches);
+                escalaAntesDelPinch = escala;
             }
-        });
+        }, { passive: false });
 
         lightboxWrapper.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            if (e.touches.length === 2 && distanciaInicialPinch !== null) {
+                // Pinch-to-zoom con dos dedos
+                const distanciaActual = distanciaEntreToques(e.touches);
+                const factorPinch = distanciaActual / distanciaInicialPinch;
+                escala = Math.min(Math.max(escalaAntesDelPinch * factorPinch, 1), 4);
+                if (escala === 1) deltaArrastrado = { x: 0, y: 0 };
+                actualizarTransformacionImagen();
+                return;
+            }
             if (!estaArrastrando || e.touches.length !== 1) return;
             
             const toqueActualX = e.touches[0].clientX;
@@ -1019,10 +1061,11 @@
             
             deltaArrastrado = { x: toqueActualX - puntoInicio.x, y: toqueActualY - puntoInicio.y };
             actualizarTransformacionImagen();
-        });
+        }, { passive: false });
 
         lightboxWrapper.addEventListener('touchend', (e) => {
             estaArrastrando = false;
+            distanciaInicialPinch = null;
             
             // Si la foto no tiene zoom activo, permitimos que un "swipe" vertical largo la cierre sola
             if (escala === 1) {
