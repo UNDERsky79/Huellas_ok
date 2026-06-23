@@ -19,6 +19,32 @@
             line-height: 1.6;
         }
         
+        /* Barra de Descuento Fija Superior */
+        .top-banner-descuento {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 15px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: sticky;
+            top: 0;
+            z-index: 10000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .top-banner-descuento p {
+            margin: 0;
+            padding: 0;
+        }
+        .codigo-cupon {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        
         /* Encabezado y Logo */
         header {
             background-color: #fff;
@@ -28,7 +54,7 @@
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             position: sticky;
-            top: 0;
+            top: 40px; /* Ajustado para que baje el grosor de la barra de descuento */
             z-index: 100;
         }
         .logo img {
@@ -184,14 +210,13 @@
             opacity: 0;
             transition: opacity 0.3s ease;
             overflow: hidden;
-            touch-action: none; /* Desactiva el scroll nativo atrás */
+            touch-action: none;
         }
         .lightbox.mostrar {
             display: flex;
             opacity: 1;
         }
         
-        /* Contenedor interno que permite mover y escalar la imagen */
         .lightbox-wrapper {
             position: relative;
             width: 100%;
@@ -211,7 +236,7 @@
             border-radius: 4px;
             box-shadow: 0 5px 25px rgba(0,0,0,0.5);
             object-fit: contain;
-            transition: transform 0.1s ease-out; /* Suaviza el paneo y zoom */
+            transition: transform 0.1s ease-out;
             user-select: none;
             -webkit-user-drag: none;
         }
@@ -452,6 +477,14 @@
         
         /* Ajuste para pantallas móviles */
         @media (max-width: 480px) {
+            .top-banner-descuento {
+                font-size: 11px;
+                padding: 8px 10px;
+            }
+            header {
+                padding: 12px 20px;
+                top: 33px; /* Reducido según la altura de la barra chica */
+            }
             .sidebar-cart {
                 width: calc(100% - 40px);
                 top: 10px;
@@ -580,6 +613,10 @@
 </head>
 <body>
 
+    <div class="top-banner-descuento">
+        <p>✨ 10% OFF en tu primer par minorista con el código: <span class="codigo-cupon">HUELLAS10</span> ✨</p>
+    </div>
+
     <header>
         <div class="logo">
             <img src="logo.png" alt="Logo Huella">
@@ -698,6 +735,36 @@
                     </div>
                 </div>
 
+                <div class="producto-card" id="prod-zueco">
+                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-zueco')">
+                        <img id="img-viewer-zueco" src="image_0.png" alt="Zueco de Ante - Negro y Suela">
+                        <div class="icono-lupa">🔍</div>
+                    </div>
+                    <div class="producto-thumbs">
+                        <img class="thumb-btn active" src="image_0.png" alt="Vista lateral" onclick="seleccionarImagen('img-viewer-zueco', this)">
+                        </div>
+                    <div class="producto-info">
+                        <h3>Zueco de Ante 'Suela y Negro'</h3>
+                        <p>Elegante zueco de ante estilo mule con hebilla ajustable y plataforma de corcho. Un par con ambos colores.</p>
+                        <div>
+                            <div class="selector-talle">
+                                <label>Talle</label>
+                                <div class="talles-opciones" id="talles-zueco">
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-zueco', this)">35</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-zueco', this)">36</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-zueco', this)">37</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-zueco', this)">38</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-zueco', this)">39</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-zueco', this)">40</button>
+                                </div>
+                                <p class="talle-requerido" id="error-zueco">⚠ Seleccioná un talle antes de agregar</p>
+                            </div>
+                            <div class="precio">$39.900</div>
+                            <button class="btn-comprar" onclick="addToCart('Zueco de Ante Suela y Negro', 39900, 'talles-zueco', 'error-zueco')">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
@@ -762,7 +829,7 @@
                 <div class="info-box">
                     <h3>🔄 Políticas de Cambio</h3>
                     <p>Queremos que ames tus sandalias. Si el talle no te convence, tenés <strong>15 días de corrido</strong> desde que recibís tu pedido para solicitar el cambio.</p>
-                    <p><em>Condición:</em> El calzado debe estar sin uso, en su caja original y en perfectas condiciones. Los costos de envío por cambio quedan a cargo del comprador.</p>
+                    <p><em>Condition:</em> El calzado debe estar sin uso, en su caja original y en perfectas condiciones. Los costos de envío por cambio quedan a cargo del comprador.</p>
                 </div>
             </div>
 
@@ -781,7 +848,7 @@
 
                 <div class="faq-item">
                     <p class="faq-pregunta" onclick="toggleFaq(this)">¿De qué material son las bases? <span>+</span></p>
-                    <p class="faq-respuesta">Trabajamos con bases ergonómicas inyectadas, expanso y detalles en corcho natural, dependiendo del modelo, garantizando durabilidad and confort para el uso diario.</p>
+                    <p class="faq-respuesta">Trabajamos con bases ergonómicas inyectadas, expanso y detalles en corcho natural, dependiendo del modelo, garantizando durabilidad y confort para el uso diario.</p>
                 </div>
             </div>
         </section>
@@ -906,16 +973,25 @@
             }
 
             let total = 0;
+            let totalItems = 0;
             const lineas = cart.map(item => {
                 const subtotal = item.price * item.quantity;
                 total += subtotal;
+                totalItems += item.quantity;
                 return `• ${item.quantity}x ${item.name} — $${subtotal.toLocaleString('es-AR')}`;
             });
+
+            // Agrega el texto del cupón solo si no califica automáticamente como mayorista (menos de 6 pares)
+            let textoCupon = "";
+            if (totalItems < 6) {
+                textoCupon = `\n📌 *Cupón aplicado:* HUELLAS10 (10% OFF Minorista)`;
+            }
 
             const mensaje =
                 `¡Hola Huella! 👋 Me gustaría realizar el siguiente pedido:\n\n` +
                 lineas.join('\n') +
-                `\n\n*Total: $${total.toLocaleString('es-AR')}*\n\n` +
+                `${textoCupon}\n\n` +
+                `*Total original: $${total.toLocaleString('es-AR')}*\n\n` +
                 `¿Pueden confirmarme disponibilidad y forma de envío? ¡Gracias!`;
 
             window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensaje)}`, '_blank');
@@ -951,7 +1027,7 @@
             abrirImagen(srcActual);
         }
 
-        // --- NUEVA LÓGICA DE INTERACCIÓN AVANZADA PARA FOTOS (ZOOM Y ARRASTRE) ---
+        // --- LÓGICA DE INTERACCIÓN AVANZADA PARA FOTOS (ZOOM Y ARRASTRE) ---
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxWrapper = document.getElementById('lightbox-wrapper');
@@ -977,14 +1053,13 @@
             lightboxImg.style.transform = `translate(${deltaArrastrado.x}px, ${deltaArrastrado.y}px) scale(${escala})`;
         }
 
-        // Control con Computadora (Rueda del Mouse y Clics)
         lightboxWrapper.addEventListener('wheel', (e) => {
             e.preventDefault();
             const factorZoom = 0.1;
             if (e.deltaY < 0) {
-                escala = Math.min(escala + factorZoom, 4); // Max Zoom x4
+                escala = Math.min(escala + factorZoom, 4);
             } else {
-                escala = Math.max(escala - factorZoom, 1); // Min Zoom x1
+                escala = Math.max(escala - factorZoom, 1);
                 if (escala === 1) deltaArrastrado = { x: 0, y: 0 };
             }
             actualizarTransformacionImagen();
@@ -1008,7 +1083,6 @@
             estaArrastrando = false;
         });
 
-        // Doble Clic / Toque rápido para Zoom veloz
         lightboxWrapper.addEventListener('dblclick', (e) => {
             if (escala === 1) {
                 escala = 2.5;
@@ -1019,7 +1093,6 @@
             actualizarTransformacionImagen();
         });
 
-        // CONTROL CON CELULAR (Pantalla Táctil)
         let distanciaInicialPinch = null;
         let escalaAntesDelPinch = 1;
 
@@ -1034,7 +1107,6 @@
             if (e.touches.length === 1) {
                 estaArrastrando = true;
                 distanciaInicialPinch = null;
-                // Guardamos la posición inicial del dedo restando el movimiento acumulado
                 puntoInicio = { x: e.touches[0].clientX - deltaArrastrado.x, y: e.touches[0].clientY - deltaArrastrado.y };
             } else if (e.touches.length === 2) {
                 estaArrastrando = false;
@@ -1046,7 +1118,6 @@
         lightboxWrapper.addEventListener('touchmove', (e) => {
             e.preventDefault();
             if (e.touches.length === 2 && distanciaInicialPinch !== null) {
-                // Pinch-to-zoom con dos dedos
                 const distanciaActual = distanciaEntreToques(e.touches);
                 const factorPinch = distanciaActual / distanciaInicialPinch;
                 escala = Math.min(Math.max(escalaAntesDelPinch * factorPinch, 1), 4);
@@ -1067,26 +1138,22 @@
             estaArrastrando = false;
             distanciaInicialPinch = null;
             
-            // Si la foto no tiene zoom activo, permitimos que un "swipe" vertical largo la cierre sola
             if (escala === 1) {
                 if (Math.abs(deltaArrastrado.y) > 130) {
                     cerrarImagen();
                 } else {
-                    // Si el movimiento fue chico, la devolvemos suavemente al centro
                     deltaArrastrado = { x: 0, y: 0 };
                     actualizarTransformacionImagen();
                 }
             }
         });
 
-        // Cerrar al tocar el fondo negro exterior
         lightbox.addEventListener('click', (e) => {
             if (e.target === lightbox || e.target === lightboxWrapper) {
                 cerrarImagen();
             }
         });
 
-        // Inicializar carrito al cargar
         updateCartUI();
     </script>
 </body>
