@@ -141,9 +141,11 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
         
+        /* Ajustes para unificar fotos (cuadradas y sin bordes negros) */
         .producto-img-container {
             width: 100%;
-            height: 240px;
+            aspect-ratio: 1 / 1;
+            height: auto;
             overflow: hidden;
             background-color: #f0f0f0;
             position: relative;
@@ -153,8 +155,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             transition: opacity 0.2s ease;
         }
+        .img-zoom-recorte {
+            transform: scale(1.35);
+        }
+        
         .icono-lupa {
             position: absolute;
             bottom: 12px;
@@ -553,8 +560,6 @@
         .cart-total {
             font-size: 18px;
             font-weight: bold;
-            display: flex;
-            justify-content: space-between;
             margin-bottom: 12px;
         }
         .btn-checkout {
@@ -606,26 +611,6 @@
             margin-top: 35px;
             font-size: 14px;
         }
-
-        /* Fuerza a que todos los contenedores sean cuadrados perfectos */
-.producto-img-container {
-    aspect-ratio: 1 / 1; 
-    height: auto; 
-}
-
-/* Asegura que la imagen llene el cuadrado sin deformarse */
-.producto-img-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; 
-    object-position: center; 
-}
-
-/* Utilidad para hacer zoom y ocultar franjas negras de capturas de celular */
-.img-zoom-recorte {
-    transform: scale(1.35);
-}
-
     </style>
 </head>
 <body>
@@ -874,100 +859,99 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- ARTÍCULO ORBIT -->
-<div class="producto-card" id="prod-orbit">
-    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-orbit')">
-        <img id="img-viewer-orbit" src="foto-orbit1.jpeg" alt="Zapatilla Orbit">
-        <div class="icono-lupa">🔍</div>
-    </div>
-    <div class="producto-thumbs">
-        <img class="thumb-btn active" src="foto-orbit1.jpeg" alt="Vista principal" onclick="seleccionarImagen('img-viewer-orbit', this)">
-    </div>
-    <div class="producto-info">
-        <h3>Zapatilla Orbit</h3>
-        <p>Colores disponibles: blanco y negro.</p>
-        <div>
-            <div class="selector-talle">
-                <label>Talle</label>
-                <div class="talles-opciones" id="talles-orbit">
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">35</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">36</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">37</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">38</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">39</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">40</button>
+                <div class="producto-card" id="prod-orbit">
+                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-orbit')">
+                        <img id="img-viewer-orbit" src="foto-orbit1.jpeg" alt="Zapatilla Orbit">
+                        <div class="icono-lupa">🔍</div>
+                    </div>
+                    <div class="producto-thumbs">
+                        <img class="thumb-btn active" src="foto-orbit1.jpeg" alt="Vista principal" onclick="seleccionarImagen('img-viewer-orbit', this)">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Zapatilla Orbit</h3>
+                        <p>Colores disponibles: blanco y negro.</p>
+                        <div>
+                            <div class="selector-talle">
+                                <label>Talle</label>
+                                <div class="talles-opciones" id="talles-orbit">
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">35</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">36</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">37</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">38</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">39</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">40</button>
+                                </div>
+                                <p class="talle-requerido" id="error-orbit">⚠ Seleccioná un talle antes de agregar</p>
+                            </div>
+                            <div class="precio">$39.900</div>
+                            <button class="btn-comprar" onclick="addToCart('Zapatilla Orbit', 39900, 'talles-orbit', 'error-orbit')">Agregar al Carrito</button>
+                        </div>
+                    </div>
                 </div>
-                <p class="talle-requerido" id="error-orbit">⚠ Seleccioná un talle antes de agregar</p>
-            </div>
-            <div class="precio">$39.900</div>
-            <button class="btn-comprar" onclick="addToCart('Zapatilla Orbit', 39900, 'talles-orbit', 'error-orbit')">Agregar al Carrito</button>
-        </div>
-    </div>
-</div>
 
-<!-- ARTÍCULO ROCK -->
-<div class="producto-card" id="prod-rock">
-    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-rock')">
-        <img id="img-viewer-rock" src="foto-rock1.jpeg" alt="Zapatilla Rock">
-        <div class="icono-lupa">🔍</div>
-    </div>
-    <div class="producto-thumbs">
-        <img class="thumb-btn active" src="foto-rock1.jpeg" alt="Vista principal" onclick="seleccionarImagen('img-viewer-rock', this)">
-    </div>
-    <div class="producto-info">
-        <h3>Zapatilla Rock</h3>
-        <p>Colores disponibles: negro, blanco y brillo negro.</p>
-        <div>
-            <div class="selector-talle">
-                <label>Talle</label>
-                <div class="talles-opciones" id="talles-rock">
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">35</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">36</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">37</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">38</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">39</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">40</button>
+                <!-- ARTÍCULO ROCK -->
+                <div class="producto-card" id="prod-rock">
+                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-rock')">
+                        <img id="img-viewer-rock" src="foto-rock1.jpeg" alt="Zapatilla Rock">
+                        <div class="icono-lupa">🔍</div>
+                    </div>
+                    <div class="producto-thumbs">
+                        <img class="thumb-btn active" src="foto-rock1.jpeg" alt="Vista principal" onclick="seleccionarImagen('img-viewer-rock', this)">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Zapatilla Rock</h3>
+                        <p>Colores disponibles: negro, blanco y brillo negro.</p>
+                        <div>
+                            <div class="selector-talle">
+                                <label>Talle</label>
+                                <div class="talles-opciones" id="talles-rock">
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">35</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">36</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">37</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">38</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">39</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">40</button>
+                                </div>
+                                <p class="talle-requerido" id="error-rock">⚠ Seleccioná un talle antes de agregar</p>
+                            </div>
+                            <div class="precio">$39.900</div>
+                            <button class="btn-comprar" onclick="addToCart('Zapatilla Rock', 39900, 'talles-rock', 'error-rock')">Agregar al Carrito</button>
+                        </div>
+                    </div>
                 </div>
-                <p class="talle-requerido" id="error-rock">⚠ Seleccioná un talle antes de agregar</p>
-            </div>
-            <div class="precio">$39.900</div>
-            <button class="btn-comprar" onclick="addToCart('Zapatilla Rock', 39900, 'talles-rock', 'error-rock')">Agregar al Carrito</button>
-        </div>
-    </div>
-</div>
 
-<!-- ARTÍCULO TRASH -->
-<div class="producto-card" id="prod-trash">
-    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-trash')">
-        <img id="img-viewer-trash" src="foto-trash1.jpeg" alt="Zapatilla Trash">
-        <div class="icono-lupa">🔍</div>
-    </div>
-    <div class="producto-thumbs">
-        <img class="thumb-btn active" src="foto-trash1.jpeg" alt="Vista principal" onclick="seleccionarImagen('img-viewer-trash', this)">
-    </div>
-    <div class="producto-info">
-        <h3>Zapatilla Trash</h3>
-        <p>Bicolor: negro y blanco / blanco y negro.</p>
-        <div>
-            <div class="selector-talle">
-                <label>Talle</label>
-                <div class="talles-opciones" id="talles-trash">
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">35</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">36</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">37</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">38</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">39</button>
-                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">40</button>
+                <!-- ARTÍCULO TRASH -->
+                <div class="producto-card" id="prod-trash">
+                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-trash')">
+                        <img id="img-viewer-trash" src="foto-trash1.jpeg" alt="Zapatilla Trash" class="img-zoom-recorte">
+                        <div class="icono-lupa">🔍</div>
+                    </div>
+                    <div class="producto-thumbs">
+                        <img class="thumb-btn active img-zoom-recorte" src="foto-trash1.jpeg" alt="Vista principal" onclick="seleccionarImagen('img-viewer-trash', this)">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Zapatilla Trash</h3>
+                        <p>Bicolor: negro y blanco / blanco y negro.</p>
+                        <div>
+                            <div class="selector-talle">
+                                <label>Talle</label>
+                                <div class="talles-opciones" id="talles-trash">
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">35</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">36</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">37</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">38</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">39</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">40</button>
+                                </div>
+                                <p class="talle-requerido" id="error-trash">⚠ Seleccioná un talle antes de agregar</p>
+                            </div>
+                            <div class="precio">$39.900</div>
+                            <button class="btn-comprar" onclick="addToCart('Zapatilla Trash', 39900, 'talles-trash', 'error-trash')">Agregar al Carrito</button>
+                        </div>
+                    </div>
                 </div>
-                <p class="talle-requerido" id="error-trash">⚠ Seleccioná un talle antes de agregar</p>
-            </div>
-            <div class="precio">$39.900</div>
-            <button class="btn-comprar" onclick="addToCart('Zapatilla Trash', 39900, 'talles-trash', 'error-trash')">Agregar al Carrito</button>
-        </div>
-    </div>
-</div>
-
 
             </div>
         </section>
@@ -1065,9 +1049,8 @@
         </div>
         <div class="cart-items" id="cart-items"></div>
         <div class="cart-footer">
-            <div class="cart-total">
-                <span>Total:</span>
-                <span id="cart-total-val">$0</span>
+            <div class="cart-total" id="cart-total-val">
+                <!-- Se inyecta por JS -->
             </div>
             <button class="btn-checkout" onclick="checkoutPedido()">Finalizar Compra</button>
         </div>
@@ -1080,7 +1063,7 @@
         </div>
     </div>
 
-    <a href="https://wa.me/5491155774243" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/5491155774243" class="whatsapp-float" target="_blank" aria-label="Contactar por WhatsApp">
         <svg viewBox="0 0 32 32">
             <path d="M16 2a13 13 0 0 0-11.3 19.4L3 29l7.8-2A13 13 0 1 0 16 2zm6.6 18.3c-.3.5-1.5 1-2 1-.5 0-1-.2-3.3-1.1a12 12 0 0 1-4.8-4.2c-.8-1-1.3-2.3-1.3-3.6 0-1.4.7-2 1-2.4.2-.2.5-.3.8-.3h.5c.2 0 .5 0 .7.5.3.6 1 2.3 1 2.5 0 .2 0 .4-.2.6s-.3.3-.5.5c-.2.2-.4.4-.2.7.4.7.9 1.3 1.6 1.9.8.7 1.6 1.1 2.4 1.5.3.1.6.1.8-.1.2-.3.8-1 1-1.3.2-.3.5-.2.8-.1h2.2c.4 0 .7.2.9.3.2.1 1.2 1.8 1.2 2.1 0 .4-.1.9-.4 1.3z"/>
         </svg>
@@ -1147,11 +1130,11 @@
             const cartTotalVal = document.getElementById('cart-total-val');
             
             cartItemsContainer.innerHTML = '';
-            let total = 0;
+            let subtotal = 0;
             let totalItems = 0;
 
             cart.forEach(item => {
-                total += item.price * item.quantity;
+                subtotal += item.price * item.quantity;
                 totalItems += item.quantity;
 
                 const itemElement = document.createElement('div');
@@ -1167,7 +1150,31 @@
             });
 
             cartCount.innerText = totalItems;
-            cartTotalVal.innerText = `$${total.toLocaleString('es-AR')}`;
+            
+            let totalFinal = subtotal;
+            let textoTotal = '';
+
+            if (totalItems > 0 && totalItems < 6) {
+                let descuento = subtotal * 0.10;
+                totalFinal = subtotal - descuento;
+                textoTotal = `
+                    <div style="font-size: 14px; font-weight: normal; color: #666;">Subtotal: $${subtotal.toLocaleString('es-AR')}</div>
+                    <div style="font-size: 14px; color: #27ae60;">Desc. 10% (HUELLAS10): -$${descuento.toLocaleString('es-AR')}</div>
+                    <div style="margin-top: 5px;">Total: $${totalFinal.toLocaleString('es-AR')}</div>
+                `;
+            } else if (totalItems >= 6) {
+                textoTotal = `
+                    <div style="font-size: 14px; font-weight: normal; color: #27ae60;">¡Aplica precio mayorista!</div>
+                    <div style="margin-top: 5px; font-size: 14px;">Coordiná el total por WhatsApp.</div>
+                `;
+            } else {
+                textoTotal = `Total: $0`;
+            }
+
+            cartTotalVal.innerHTML = textoTotal;
+            
+            document.querySelector('.cart-total').style.display = 'block';
+            document.querySelector('.cart-total').style.textAlign = 'right';
         }
 
         function checkoutPedido() {
@@ -1176,26 +1183,33 @@
                 return;
             }
 
-            let total = 0;
+            let subtotal = 0;
             let totalItems = 0;
             const lineas = cart.map(item => {
-                const subtotal = item.price * item.quantity;
-                total += subtotal;
+                const subtotalItem = item.price * item.quantity;
+                subtotal += subtotalItem;
                 totalItems += item.quantity;
-                return `• ${item.quantity}x ${item.name} — $${subtotal.toLocaleString('es-AR')}`;
+                return `• ${item.quantity}x ${item.name} — $${subtotalItem.toLocaleString('es-AR')}`;
             });
 
-            let textoCupon = "";
+            let totalFinal = subtotal;
+            let desglosePrecio = `*Subtotal:* $${subtotal.toLocaleString('es-AR')}\n`;
+
             if (totalItems < 6) {
-                textoCupon = `\n📌 *Cupón aplicado:* HUELLAS10 (10% OFF Minorista)`;
+                let descuento = subtotal * 0.10;
+                totalFinal = subtotal - descuento;
+                desglosePrecio += `*Descuento (HUELLAS10):* -$${descuento.toLocaleString('es-AR')}\n`;
+                desglosePrecio += `*Total a pagar:* $${totalFinal.toLocaleString('es-AR')}*`;
+            } else {
+                desglosePrecio += `\n📌 *Nota:* El pedido es mayorista (${totalItems} pares). Por favor, confirmame los precios con el catálogo para revendedores.`;
             }
 
             const mensaje =
                 `¡Hola Huella! 👋 Me gustaría realizar el siguiente pedido:\n\n` +
                 lineas.join('\n') +
-                `${textoCupon}\n\n` +
-                `*Total original: $${total.toLocaleString('es-AR')}*\n\n` +
-                `¿Pueden confirmarme disponibilidad y forma de envío? ¡Gracias!`;
+                `\n\n` +
+                desglosePrecio +
+                `\n\n¿Pueden confirmarme disponibilidad y forma de envío? ¡Gracias!`;
 
             window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(mensaje)}`, '_blank');
         }
@@ -1215,6 +1229,14 @@
         function seleccionarImagen(viewerId, thumbElement) {
             const visorPrincipal = document.getElementById(viewerId);
             visorPrincipal.style.opacity = '0.3';
+            
+            // Si el thumb tiene la clase img-zoom-recorte, se la pasamos al visor principal
+            if (thumbElement.classList.contains('img-zoom-recorte')) {
+                visorPrincipal.classList.add('img-zoom-recorte');
+            } else {
+                visorPrincipal.classList.remove('img-zoom-recorte');
+            }
+
             setTimeout(() => {
                 visorPrincipal.src = thumbElement.src;
                 visorPrincipal.alt = thumbElement.alt;
