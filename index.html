@@ -642,100 +642,129 @@
             <h2 class="section-title">Colección 2026/2027</h2>
             <div class="grid-productos">
                 
-                <div class="producto-card" id="prod-boho">
-                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-boho')">
-                        <img id="img-viewer-boho" src="boho4.jpeg" alt="Sandalia Boho Chic">
-                        <div class="icono-lupa">🔍</div>
-                    </div>
-                    <div class="producto-thumbs">
-                        <img class="thumb-btn active" src="boho4.jpeg" alt="Vista lateral" onclick="seleccionarImagen('img-viewer-boho', this)">
-                        <img class="thumb-btn" src="boho2.jpeg" alt="Vista superior" onclick="seleccionarImagen('img-viewer-boho', this)">
-                        <img class="thumb-btn" src="boho1.jpg" alt="Vista frontal" onclick="seleccionarImagen('img-viewer-boho', this)">
-                    </div>
-                    <div class="producto-info">
-                        <h3>Sandalia Boho Anatómica</h3>
-                        <p>Apliques de pedrería turquesa y base ergonómica de corcho.</p>
-                        <div>
-                            <div class="selector-talle">
-                                <label>Talle</label>
-                                <div class="talles-opciones" id="talles-boho">
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-boho', this)">35</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-boho', this)">36</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-boho', this)">37</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-boho', this)">38</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-boho', this)">39</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-boho', this)">40</button>
-                                </div>
-                                <p class="talle-requerido" id="error-boho">⚠ Seleccioná un talle antes de agregar</p>
-                            </div>
-                            <div class="precio">$45.000</div>
-                            <button class="btn-comprar" onclick="addToCart('Sandalia Boho Anatómica', 45000, 'talles-boho', 'error-boho')">Agregar al Carrito</button>
-                        </div>
-                    </div>
+                <!-- NUEVO MODELO 1: Sandalia Strass Summer -->
+<div class="producto-card" id="prod-sandalia1">
+    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-s1')">
+        <img id="img-viewer-s1" src="sandalia1.png" alt="Sandalia Strass Summer">
+        <div class="icono-lupa">🔍</div>
+    </div>
+    <div class="producto-thumbs">
+        <img class="thumb-btn active" src="sandalia1.png" alt="Vista principal" onclick="seleccionarImagen('img-viewer-s1', this)">
+    </div>
+    <div class="producto-info">
+        <h3>Sandalia Strass Summer</h3>
+        <p>Diseño elegante en negro con apliques de strass y elástico ajustable.</p>
+        <div>
+            <div class="selector-talle">
+                <label>Talle</label>
+                <div class="talles-opciones" id="talles-s1">
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s1', this)">35</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s1', this)">36</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s1', this)">37</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s1', this)">38</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s1', this)">39</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s1', this)">40</button>
                 </div>
+                <p class="talle-requerido" id="error-s1">⚠ Seleccioná un talle antes de agregar</p>
+            </div>
+            <div class="precio">$42.000</div>
+            <button class="btn-comprar" onclick="addToCart('Sandalia Strass Summer', 42000, 'talles-s1', 'error-s1')">Agregar al Carrito</button>
+        </div>
+    </div>
+</div>
 
-                <div class="producto-card" id="prod-noir">
-                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-noir')">
-                        <img id="img-viewer-noir" src="noir3.jpeg" alt="Sandalia Negra Brillante">
-                        <div class="icono-lupa">🔍</div>
-                    </div>
-                    <div class="producto-thumbs">
-                        <img class="thumb-btn active" src="noir3.jpeg" alt="Vista lateral" onclick="seleccionarImagen('img-viewer-noir', this)">
-                        <img class="thumb-btn" src="noir2.jpeg" alt="Vista superior" onclick="seleccionarImagen('img-viewer-noir', this)">
-                        <img class="thumb-btn" src="noir1.jpg" alt="Vista frontal" onclick="seleccionarImagen('img-viewer-noir', this)">
-                    </div>
-                    <div class="producto-info">
-                        <h3>Sandalia Noir Elegance</h3>
-                        <p>Doble hebilla ajustable con detalles de strass y perlas negras.</p>
-                        <div>
-                            <div class="selector-talle">
-                                <label>Talle</label>
-                                <div class="talles-opciones" id="talles-noir">
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-noir', this)">35</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-noir', this)">36</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-noir', this)">37</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-noir', this)">38</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-noir', this)">39</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-noir', this)">40</button>
-                                </div>
-                                <p class="talle-requerido" id="error-noir">⚠ Seleccioná un talle antes de agregar</p>
-                            </div>
-                            <div class="precio">$45.000</div>
-                            <button class="btn-comprar" onclick="addToCart('Sandalia Noir Elegance', 45000, 'talles-noir', 'error-noir')">Agregar al Carrito</button>
-                        </div>
-                    </div>
+<!-- NUEVO MODELO 2: Sandalia Black Sunset -->
+<div class="producto-card" id="prod-sandalia2">
+    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-s2')">
+        <img id="img-viewer-s2" src="sandalia2.png" alt="Sandalia Black Sunset">
+        <div class="icono-lupa">🔍</div>
+    </div>
+    <div class="producto-thumbs">
+        <img class="thumb-btn active" src="sandalia2.png" alt="Vista principal" onclick="seleccionarImagen('img-viewer-s2', this)">
+    </div>
+    <div class="producto-info">
+        <h3>Sandalia Black Sunset</h3>
+        <p>Doble hebilla con detalles troquelados y apliques oscuros sobre base de corcho.</p>
+        <div>
+            <div class="selector-talle">
+                <label>Talle</label>
+                <div class="talles-opciones" id="talles-s2">
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s2', this)">35</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s2', this)">36</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s2', this)">37</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s2', this)">38</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s2', this)">39</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s2', this)">40</button>
                 </div>
+                <p class="talle-requerido" id="error-s2">⚠ Seleccioná un talle antes de agregar</p>
+            </div>
+            <div class="precio">$45.000</div>
+            <button class="btn-comprar" onclick="addToCart('Sandalia Black Sunset', 45000, 'talles-s2', 'error-s2')">Agregar al Carrito</button>
+        </div>
+    </div>
+</div>
 
-                <div class="producto-card" id="prod-gold">
-                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-gold')">
-                        <img id="img-viewer-gold" src="gold2.jpeg" alt="Sandalia Plataforma Dorada">
-                        <div class="icono-lupa">🔍</div>
-                    </div>
-                    <div class="producto-thumbs">
-                        <img class="thumb-btn active" src="gold2.jpeg" alt="Vista superior" onclick="seleccionarImagen('img-viewer-gold', this)">
-                        <img class="thumb-btn" src="gold1.jpg" alt="Vista frontal" onclick="seleccionarImagen('img-viewer-gold', this)">
-                    </div>
-                    <div class="producto-info">
-                        <h3>Plataforma Gold Leaf</h3>
-                        <p>Capellada en tonos dorados con detalles troquelados.</p>
-                        <div>
-                            <div class="selector-talle">
-                                <label>Talle</label>
-                                <div class="talles-opciones" id="talles-gold">
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-gold', this)">35</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-gold', this)">36</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-gold', this)">37</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-gold', this)">38</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-gold', this)">39</button>
-                                    <button class="talle-btn" onclick="seleccionarTalle('talles-gold', this)">40</button>
-                                </div>
-                                <p class="talle-requerido" id="error-gold">⚠ Seleccioná un talle antes de agregar</p>
-                            </div>
-                            <div class="precio">$35.000</div>
-                            <button class="btn-comprar" onclick="addToCart('Plataforma Gold Leaf', 35000, 'talles-gold', 'error-gold')">Agregar al Carrito</button>
-                        </div>
-                    </div>
+<!-- NUEVO MODELO 3: Sandalia Texana Sunset -->
+<div class="producto-card" id="prod-sandalia3">
+    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-s3')">
+        <img id="img-viewer-s3" src="sandalia3.png" alt="Sandalia Texana Sunset">
+        <div class="icono-lupa">🔍</div>
+    </div>
+    <div class="producto-thumbs">
+        <img class="thumb-btn active" src="sandalia3.png" alt="Vista principal" onclick="seleccionarImagen('img-viewer-s3', this)">
+    </div>
+    <div class="producto-info">
+        <h3>Sandalia Texana Sunset</h3>
+        <p>Estilo western en tonos tierra con tachas y recortes originales.</p>
+        <div>
+            <div class="selector-talle">
+                <label>Talle</label>
+                <div class="talles-opciones" id="talles-s3">
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s3', this)">35</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s3', this)">36</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s3', this)">37</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s3', this)">38</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s3', this)">39</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s3', this)">40</button>
                 </div>
+                <p class="talle-requerido" id="error-s3">⚠ Seleccioná un talle antes de agregar</p>
+            </div>
+            <div class="precio">$45.000</div>
+            <button class="btn-comprar" onclick="addToCart('Sandalia Texana Sunset', 45000, 'talles-s3', 'error-s3')">Agregar al Carrito</button>
+        </div>
+    </div>
+</div>
+
+<!-- NUEVO MODELO 4: Sandalia Boho Summer -->
+<div class="producto-card" id="prod-sandalia4">
+    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-s4')">
+        <img id="img-viewer-s4" src="sandalia4.png" alt="Sandalia Boho Summer">
+        <div class="icono-lupa">🔍</div>
+    </div>
+    <div class="producto-thumbs">
+        <img class="thumb-btn active" src="sandalia4.png" alt="Vista principal" onclick="seleccionarImagen('img-viewer-s4', this)">
+    </div>
+    <div class="producto-info">
+        <h3>Sandalia Boho Summer</h3>
+        <p>Diseño artesanal con mostacillas coloridas y ajuste elástico en el talón.</p>
+        <div>
+            <div class="selector-talle">
+                <label>Talle</label>
+                <div class="talles-opciones" id="talles-s4">
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s4', this)">35</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s4', this)">36</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s4', this)">37</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s4', this)">38</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s4', this)">39</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-s4', this)">40</button>
+                </div>
+                <p class="talle-requerido" id="error-s4">⚠ Seleccioná un talle antes de agregar</p>
+            </div>
+            <div class="precio">$42.000</div>
+            <button class="btn-comprar" onclick="addToCart('Sandalia Boho Summer', 42000, 'talles-s4', 'error-s4')">Agregar al Carrito</button>
+        </div>
+    </div>
+</div>
 
                 <div class="producto-card" id="prod-zueco">
                     <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-zueco')">
@@ -770,11 +799,11 @@
                 <!-- ARTÍCULO TACHAS -->
                 <div class="producto-card" id="prod-tachas">
                     <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-tachas')">
-                        <img id="img-viewer-tachas" src="sandalia3.png" alt="Artículo Tachas">
+                        <img id="img-viewer-tachas" src="sandalia66.png" alt="Artículo Tachas">
                         <div class="icono-lupa">🔍</div>
                     </div>
                     <div class="producto-thumbs">
-                        <img class="thumb-btn active" src="sandalia3.png" alt="Vista principal" onclick="seleccionarImagen('img-viewer-tachas', this)">
+                        <img class="thumb-btn active" src="sandalia66.png" alt="Vista principal" onclick="seleccionarImagen('img-viewer-tachas', this)">
                     </div>
                     <div class="producto-info">
                         <h3>Sandalia Tachas</h3>
