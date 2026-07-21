@@ -54,7 +54,7 @@
             align-items: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             position: sticky;
-            top: 40px; /* Ajustado para que baje el grosor de la barra de descuento */
+            top: 40px;
             z-index: 100;
         }
         .logo img {
@@ -483,7 +483,7 @@
             }
             header {
                 padding: 12px 20px;
-                top: 33px; /* Reducido según la altura de la barra chica */
+                top: 33px; 
             }
             .sidebar-cart {
                 width: calc(100% - 40px);
@@ -492,9 +492,6 @@
             }
             .sidebar-cart.open {
                 right: 20px;
-            }
-            header {
-                padding: 12px 20px;
             }
             nav a {
                 display: none;
@@ -742,7 +739,7 @@
                     </div>
                     <div class="producto-thumbs">
                         <img class="thumb-btn active" src="image_0.png" alt="Vista lateral" onclick="seleccionarImagen('img-viewer-zueco', this)">
-                        </div>
+                    </div>
                     <div class="producto-info">
                         <h3>Zueco de Ante 'Suela y Negro'</h3>
                         <p>Elegante zueco de ante estilo mule con hebilla ajustable y plataforma de corcho. Un par con ambos colores.</p>
@@ -764,6 +761,193 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- ARTÍCULO TACHAS -->
+                <div class="producto-card" id="prod-tachas">
+                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-tachas')">
+                        <img id="img-viewer-tachas" src="sandalia3.png" alt="Artículo Tachas">
+                        <div class="icono-lupa">🔍</div>
+                    </div>
+                    <div class="producto-thumbs">
+                        <img class="thumb-btn active" src="sandalia3.png" alt="Vista principal" onclick="seleccionarImagen('img-viewer-tachas', this)">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Sandalia Tachas</h3>
+                        <p>Colores disponibles: blanco, rosa y suela.</p>
+                        <div>
+                            <div class="selector-talle">
+                                <label>Talle</label>
+                                <div class="talles-opciones" id="talles-tachas">
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-tachas', this)">35</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-tachas', this)">36</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-tachas', this)">37</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-tachas', this)">38</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-tachas', this)">39</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-tachas', this)">40</button>
+                                </div>
+                                <p class="talle-requerido" id="error-tachas">⚠ Seleccioná un talle antes de agregar</p>
+                            </div>
+                            <div class="precio">$35.000</div>
+                            <button class="btn-comprar" onclick="addToCart('Artículo Tachas', 35000, 'talles-tachas', 'error-tachas')">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARTÍCULO BRILLO 3 -->
+                <div class="producto-card" id="prod-brillo3">
+                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-brillo3')">
+                        <img id="img-viewer-brillo3" src="sandalia5.png" alt="Artículo Brillo 3">
+                        <div class="icono-lupa">🔍</div>
+                    </div>
+                    <div class="producto-thumbs">
+                        <img class="thumb-btn active" src="sandalia5.png" alt="Vista principal" onclick="seleccionarImagen('img-viewer-brillo3', this)">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Sandalia Brillo 33</h3>
+                        <p>Colores disponibles: blanco, rosa y suela.</p>
+                        <div>
+                            <div class="selector-talle">
+                                <label>Talle</label>
+                                <div class="talles-opciones" id="talles-brillo3">
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-brillo3', this)">35</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-brillo3', this)">36</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-brillo3', this)">37</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-brillo3', this)">38</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-brillo3', this)">39</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-brillo3', this)">40</button>
+                                </div>
+                                <p class="talle-requerido" id="error-brillo3">⚠ Seleccioná un talle antes de agregar</p>
+                            </div>
+                            <div class="precio">$35.000</div>
+                            <button class="btn-comprar" onclick="addToCart('Artículo Brillo 3', 35000, 'talles-brillo3', 'error-brillo3')">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ARTÍCULO HEBILLA GRANDE -->
+                <div class="producto-card" id="prod-hebilla">
+                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-hebilla')">
+                        <img id="img-viewer-hebilla" src="sandalia6.png" alt="Artículo Hebilla Grande">
+                        <div class="icono-lupa">🔍</div>
+                    </div>
+                    <div class="producto-thumbs">
+                        <img class="thumb-btn active" src="sandalia6.png" alt="Vista principal" onclick="seleccionarImagen('img-viewer-hebilla', this)">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Sandalia Hebilla Grande</h3>
+                        <p>Colores disponibles: blanco y suela.</p>
+                        <div>
+                            <div class="selector-talle">
+                                <label>Talle</label>
+                                <div class="talles-opciones" id="talles-hebilla">
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-hebilla', this)">35</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-hebilla', this)">36</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-hebilla', this)">37</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-hebilla', this)">38</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-hebilla', this)">39</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-hebilla', this)">40</button>
+                                </div>
+                                <p class="talle-requerido" id="error-hebilla">⚠ Seleccioná un talle antes de agregar</p>
+                            </div>
+                            <div class="precio">$35.000</div>
+                            <button class="btn-comprar" onclick="addToCart('Artículo Hebilla Grande', 35000, 'talles-hebilla', 'error-hebilla')">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ARTÍCULO ORBIT -->
+<div class="producto-card" id="prod-orbit">
+    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-orbit')">
+        <img id="img-viewer-orbit" src="foto-orbit1.jpeg" alt="Zapatilla Orbit">
+        <div class="icono-lupa">🔍</div>
+    </div>
+    <div class="producto-thumbs">
+        <img class="thumb-btn active" src="foto-orbit1.jpeg" alt="Vista principal" onclick="seleccionarImagen('img-viewer-orbit', this)">
+    </div>
+    <div class="producto-info">
+        <h3>Zapatilla Orbit</h3>
+        <p>Colores disponibles: blanco y negro.</p>
+        <div>
+            <div class="selector-talle">
+                <label>Talle</label>
+                <div class="talles-opciones" id="talles-orbit">
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">35</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">36</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">37</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">38</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">39</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-orbit', this)">40</button>
+                </div>
+                <p class="talle-requerido" id="error-orbit">⚠ Seleccioná un talle antes de agregar</p>
+            </div>
+            <div class="precio">$39.900</div>
+            <button class="btn-comprar" onclick="addToCart('Zapatilla Orbit', 39900, 'talles-orbit', 'error-orbit')">Agregar al Carrito</button>
+        </div>
+    </div>
+</div>
+
+<!-- ARTÍCULO ROCK -->
+<div class="producto-card" id="prod-rock">
+    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-rock')">
+        <img id="img-viewer-rock" src="foto-rock1.jpeg" alt="Zapatilla Rock">
+        <div class="icono-lupa">🔍</div>
+    </div>
+    <div class="producto-thumbs">
+        <img class="thumb-btn active" src="foto-rock1.jpeg" alt="Vista principal" onclick="seleccionarImagen('img-viewer-rock', this)">
+    </div>
+    <div class="producto-info">
+        <h3>Zapatilla Rock</h3>
+        <p>Colores disponibles: negro, blanco y brillo negro.</p>
+        <div>
+            <div class="selector-talle">
+                <label>Talle</label>
+                <div class="talles-opciones" id="talles-rock">
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">35</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">36</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">37</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">38</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">39</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-rock', this)">40</button>
+                </div>
+                <p class="talle-requerido" id="error-rock">⚠ Seleccioná un talle antes de agregar</p>
+            </div>
+            <div class="precio">$39.900</div>
+            <button class="btn-comprar" onclick="addToCart('Zapatilla Rock', 39900, 'talles-rock', 'error-rock')">Agregar al Carrito</button>
+        </div>
+    </div>
+</div>
+
+<!-- ARTÍCULO TRASH -->
+<div class="producto-card" id="prod-trash">
+    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-trash')">
+        <img id="img-viewer-trash" src="foto-trash1.jpeg" alt="Zapatilla Trash">
+        <div class="icono-lupa">🔍</div>
+    </div>
+    <div class="producto-thumbs">
+        <img class="thumb-btn active" src="foto-trash1.jpeg" alt="Vista principal" onclick="seleccionarImagen('img-viewer-trash', this)">
+    </div>
+    <div class="producto-info">
+        <h3>Zapatilla Trash</h3>
+        <p>Bicolor: negro y blanco / blanco y negro.</p>
+        <div>
+            <div class="selector-talle">
+                <label>Talle</label>
+                <div class="talles-opciones" id="talles-trash">
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">35</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">36</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">37</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">38</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">39</button>
+                    <button class="talle-btn" onclick="seleccionarTalle('talles-trash', this)">40</button>
+                </div>
+                <p class="talle-requerido" id="error-trash">⚠ Seleccioná un talle antes de agregar</p>
+            </div>
+            <div class="precio">$39.900</div>
+            <button class="btn-comprar" onclick="addToCart('Zapatilla Trash', 39900, 'talles-trash', 'error-trash')">Agregar al Carrito</button>
+        </div>
+    </div>
+</div>
+
 
             </div>
         </section>
@@ -981,7 +1165,6 @@
                 return `• ${item.quantity}x ${item.name} — $${subtotal.toLocaleString('es-AR')}`;
             });
 
-            // Agrega el texto del cupón solo si no califica automáticamente como mayorista (menos de 6 pares)
             let textoCupon = "";
             if (totalItems < 6) {
                 textoCupon = `\n📌 *Cupón aplicado:* HUELLAS10 (10% OFF Minorista)`;
