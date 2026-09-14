@@ -5,6 +5,16 @@
     <link rel="icon" type="image/png" href="logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huella - Calzado Femenino | Temporada 2026/2027</title>
+
+    <!-- Metadatos de previsualización (Open Graph / WhatsApp / Redes) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Huella - Calzado Femenino | Temporada 2026/2027">
+    <meta property="og:description" content="Venta minorista y mayorista de calzado femenino de excelente calidad. Conocé nuestra colección y hacé tu pedido online.">
+    <meta property="og:url" content="https://undersky79.github.io/Huellas_ok/">
+    <meta property="og:image" content="https://undersky79.github.io/Huellas_ok/portada.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
     <!-- Iconos FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -702,8 +712,70 @@
         <section id="coleccion" class="section-container">
             <h2 class="section-title">Colección 2026/2027</h2>
             <div class="grid-productos">
-                
-                <!-- NUEVO MODELO 1: Sandalia Strass Summer -->
+
+                <!-- NUEVO MODELO: Sandalia Cadena Black Platform -->
+                <div class="producto-card" id="prod-sandalia-cadena">
+                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-cadena')">
+                        <img id="img-viewer-cadena" src="sanda0.jpg" alt="Sandalia Cadena Black Platform">
+                        <div class="icono-lupa">🔍</div>
+                    </div>
+                    <div class="producto-thumbs">
+                        <img class="thumb-btn active" src="sanda0.jpg" alt="Vista principal" onclick="seleccionarImagen('img-viewer-cadena', this)">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Sandalia Cadena Black Platform</h3>
+                        <p>Diseño mule cruzado con eslabones plateados y base anatómica alta de máximo confort.</p>
+                        <div>
+                            <div class="selector-talle">
+                                <label>Talle</label>
+                                <div class="talles-opciones" id="talles-cadena">
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-cadena', this)">35</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-cadena', this)">36</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-cadena', this)">37</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-cadena', this)">38</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-cadena', this)">39</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-cadena', this)">40</button>
+                                </div>
+                                <p class="talle-requerido" id="error-cadena">⚠ Seleccioná un talle antes de agregar</p>
+                            </div>
+                            <div class="precio">$45.000</div>
+                            <button class="btn-comprar" onclick="addToCart('Sandalia Cadena Black Platform', 45000, 'talles-cadena', 'error-cadena')">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODELO: Sandalia Roma Suela -->
+                <div class="producto-card" id="prod-sandalia-roma">
+                    <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-roma')">
+                        <img id="img-viewer-roma" src="sanda1.jpg" alt="Sandalia Roma Suela">
+                        <div class="icono-lupa">🔍</div>
+                    </div>
+                    <div class="producto-thumbs">
+                        <img class="thumb-btn active" src="sanda1.jpg" alt="Vista principal" onclick="seleccionarImagen('img-viewer-roma', this)">
+                    </div>
+                    <div class="producto-info">
+                        <h3>Sandalia Roma Suela</h3>
+                        <p>Diseño en gamuza color suela con microtachas metálicas, laterales calados y cierre al talón.</p>
+                        <div>
+                            <div class="selector-talle">
+                                <label>Talle</label>
+                                <div class="talles-opciones" id="talles-roma">
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-roma', this)">35</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-roma', this)">36</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-roma', this)">37</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-roma', this)">38</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-roma', this)">39</button>
+                                    <button class="talle-btn" onclick="seleccionarTalle('talles-roma', this)">40</button>
+                                </div>
+                                <p class="talle-requerido" id="error-roma">⚠ Seleccioná un talle antes de agregar</p>
+                            </div>
+                            <div class="precio">$45.000</div>
+                            <button class="btn-comprar" onclick="addToCart('Sandalia Roma Suela', 45000, 'talles-roma', 'error-roma')">Agregar al Carrito</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MODELO: Sandalia Strass Summer -->
                 <div class="producto-card" id="prod-sandalia1">
                     <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-s1')">
                         <img id="img-viewer-s1" src="sandalia1.png" alt="Sandalia Strass Summer">
@@ -734,7 +806,7 @@
                     </div>
                 </div>
 
-                <!-- NUEVO MODELO 2: Sandalia Black Sunset -->
+                <!-- MODELO: Sandalia Black Sunset -->
                 <div class="producto-card" id="prod-sandalia2">
                     <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-s2')">
                         <img id="img-viewer-s2" src="sandalia2.png" alt="Sandalia Black Sunset">
@@ -765,7 +837,7 @@
                     </div>
                 </div>
 
-                <!-- NUEVO MODELO 3: Sandalia Texana Sunset -->
+                <!-- MODELO: Sandalia Texana Sunset -->
                 <div class="producto-card" id="prod-sandalia3">
                     <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-s3')">
                         <img id="img-viewer-s3" src="sandalia3.png" alt="Sandalia Texana Sunset">
@@ -796,7 +868,7 @@
                     </div>
                 </div>
 
-                <!-- NUEVO MODELO 4: Sandalia Boho Summer -->
+                <!-- MODELO: Sandalia Boho Summer -->
                 <div class="producto-card" id="prod-sandalia4">
                     <div class="producto-img-container" onclick="abrirImagenConID('img-viewer-s4')">
                         <img id="img-viewer-s4" src="sandalia4.png" alt="Sandalia Boho Summer">
